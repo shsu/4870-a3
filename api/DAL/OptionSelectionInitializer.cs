@@ -16,19 +16,6 @@ namespace api.DAL
             SeedDummyChoices(context);
         }
 
-        private static void SeedDummyChoices(OptionSelectionContext context)
-        {
-            DateTime now = new DateTime();
-            var dummyChoices = new List<Choice>
-            {
-                new Choice{CreateDate=now,StudentNumber="A00800013",FirstName="Steven",LastName="Hsu",TermCode=201420,FirstOptionChoiceID=4,SecondOptionChoiceID=2,ThirdOptionChoiceID=1,ForthOptionChoiceID=3},
-                new Choice{CreateDate=now,StudentNumber="A00900413",FirstName="Sandy",LastName="Ching",TermCode=201420,FirstOptionChoiceID=2,SecondOptionChoiceID=1,ThirdOptionChoiceID=4,ForthOptionChoiceID=3},
-                new Choice{CreateDate=now,StudentNumber="A01000013",FirstName="Joseph",LastName="Hou",TermCode=201420,FirstOptionChoiceID=1,SecondOptionChoiceID=4,ThirdOptionChoiceID=2,ForthOptionChoiceID=3}
-            };
-            dummyChoices.ForEach(s => context.Choices.Add(s));
-            context.SaveChanges();
-        }
-
         private static void SeedTerms(OptionSelectionContext context)
         {
             var terms = new List<Term>
@@ -54,6 +41,19 @@ namespace api.DAL
             };
 
             options.ForEach(s => context.Options.Add(s));
+            context.SaveChanges();
+        }
+
+        private static void SeedDummyChoices(OptionSelectionContext context)
+        {
+            DateTime now = new DateTime();
+            var dummyChoices = new List<Choice>
+            {
+                new Choice{CreateDate=now,StudentNumber="A00800013",FirstName="Steven",LastName="Hsu",TermCode=201420,FirstOptionChoiceID=4,SecondOptionChoiceID=2,ThirdOptionChoiceID=1,ForthOptionChoiceID=3},
+                new Choice{CreateDate=now,StudentNumber="A00900413",FirstName="Sandy",LastName="Ching",TermCode=201420,FirstOptionChoiceID=2,SecondOptionChoiceID=1,ThirdOptionChoiceID=4,ForthOptionChoiceID=3},
+                new Choice{CreateDate=now,StudentNumber="A01000013",FirstName="Joseph",LastName="Hou",TermCode=201420,FirstOptionChoiceID=1,SecondOptionChoiceID=4,ThirdOptionChoiceID=2,ForthOptionChoiceID=3}
+            };
+            dummyChoices.ForEach(s => context.Choices.Add(s));
             context.SaveChanges();
         }
     }
