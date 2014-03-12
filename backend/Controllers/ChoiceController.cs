@@ -44,7 +44,7 @@ namespace backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != choice.ChoiceID)
+            if (id != choice.Id)
             {
                 return BadRequest();
             }
@@ -82,7 +82,7 @@ namespace backend.Controllers
             db.Choices.Add(choice);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = choice.ChoiceID }, choice);
+            return CreatedAtRoute("DefaultApi", new { id = choice.Id }, choice);
         }
 
         // DELETE api/Choice/5
@@ -112,7 +112,7 @@ namespace backend.Controllers
 
         private bool ChoiceExists(int id)
         {
-            return db.Choices.Count(e => e.ChoiceID == id) > 0;
+            return db.Choices.Count(e => e.Id == id) > 0;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace backend.Models.Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ChoiceID { get; set; }
+        public int Id { get; set; }
 
         //public DateTime CreateDate { get; set; }
 
@@ -25,29 +25,42 @@ namespace backend.Models.Entity
         public String LastName { get; set; }
 
         [Required]
-        public int TermCode { get; set; }
+        public int TermId { get; set; }
 
         [Required]
-        public int FirstOptionChoiceID { get; set; }
+        public int FirstOptionChoiceId { get; set; }
 
         [Required]
-        public int SecondOptionChoiceID { get; set; }
+        public int SecondOptionChoiceId { get; set; }
 
         [Required]
-        public int ThirdOptionChoiceID { get; set; }
+        public int ThirdOptionChoiceId { get; set; }
 
         [Required]
-        public int ForthOptionChoiceID { get; set; }
+        public int ForthOptionChoiceId { get; set; }
 
 
         /* ==============================
          * Navigational Properties
          * ==============================
          */
+        [ForeignKey("TermId")]
+        [InverseProperty("Id")]
         public virtual Term Term { get; set; }
+
+        [ForeignKey("FirstOptionChoiceId")]
+        [InverseProperty("Id")]
         public virtual Option FirstOptionChoice { get; set; }
+
+        [ForeignKey("SecondOptionChoiceId")]
         public virtual Option SecondOptionChoice { get; set; }
+
+        [ForeignKey("ThirdOptionChoiceId")]
+        [InverseProperty("Id")]
         public virtual Option ThirdOptionChoice { get; set; }
+
+        [ForeignKey("ForthOptionChoiceId")]
+        [InverseProperty("Id")]
         public virtual Option ForthOptionChoice { get; set; }
 
     }

@@ -44,7 +44,7 @@ namespace backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != term.Code)
+            if (id != term.Id)
             {
                 return BadRequest();
             }
@@ -82,7 +82,7 @@ namespace backend.Controllers
             db.Terms.Add(term);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = term.Code }, term);
+            return CreatedAtRoute("DefaultApi", new { id = term.Id }, term);
         }
 
         // DELETE api/Term/5
@@ -112,7 +112,7 @@ namespace backend.Controllers
 
         private bool TermExists(int id)
         {
-            return db.Terms.Count(e => e.Code == id) > 0;
+            return db.Terms.Count(e => e.Id == id) > 0;
         }
     }
 }

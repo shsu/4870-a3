@@ -13,18 +13,18 @@ namespace backend.DAL
         {
             SeedOptions(context);
             SeedTerms(context);
-            //SeedDummyChoices(context);
+            SeedDummyChoices(context);
         }
 
         private static void SeedTerms(OptionSelectionContext context)
         {
             var terms = new List<Term>
             {
-                new Term{Code=201410,Description="Winter 2014",IsActive=false},
-                new Term{Code=201420,Description="Spring/Summer 2014",IsActive=true},
-                new Term{Code=201430,Description="Fall 2014",IsActive=false},
-                new Term{Code=201510,Description="Winter 2015",IsActive=false},
-                new Term{Code=201520,Description="Spring/Summer 2015",IsActive=false}
+                new Term{Id=201410,Description="Winter 2014",IsActive=false},
+                new Term{Id=201420,Description="Spring/Summer 2014",IsActive=true},
+                new Term{Id=201430,Description="Fall 2014",IsActive=false},
+                new Term{Id=201510,Description="Winter 2015",IsActive=false},
+                new Term{Id=201520,Description="Spring/Summer 2015",IsActive=false}
             };
             terms.ForEach(s => context.Terms.Add(s));
             context.SaveChanges();
@@ -34,10 +34,10 @@ namespace backend.DAL
         {
             var options = new List<Option>
             {
-                new Option{OptionID=1,Title="Client Server",IsActive=true},
-                new Option{OptionID=2,Title="Data Communications",IsActive=true},
-                new Option{OptionID=3,Title="Database",IsActive=false},
-                new Option{OptionID=4,Title="Information Systems",IsActive=true}
+                new Option{Id=1,Title="Client Server",IsActive=true},
+                new Option{Id=2,Title="Data Communications",IsActive=true},
+                new Option{Id=3,Title="Database",IsActive=false},
+                new Option{Id=4,Title="Information Systems",IsActive=true}
             };
 
             options.ForEach(s => context.Options.Add(s));
@@ -49,9 +49,9 @@ namespace backend.DAL
             DateTime now = new DateTime();
             var dummyChoices = new List<Choice>
             {
-                new Choice{StudentNumber="A00800013",FirstName="Steven",LastName="Hsu",TermCode=201420,FirstOptionChoiceID=4,SecondOptionChoiceID=2,ThirdOptionChoiceID=1,ForthOptionChoiceID=3},
-                new Choice{StudentNumber="A00900413",FirstName="Sandy",LastName="Ching",TermCode=201420,FirstOptionChoiceID=2,SecondOptionChoiceID=1,ThirdOptionChoiceID=4,ForthOptionChoiceID=3},
-                new Choice{StudentNumber="A01000013",FirstName="Joseph",LastName="Hou",TermCode=201420,FirstOptionChoiceID=1,SecondOptionChoiceID=4,ThirdOptionChoiceID=2,ForthOptionChoiceID=3}
+                new Choice{StudentNumber="A00800013",FirstName="Steven",LastName="Hsu",TermId=201420,FirstOptionChoiceId=4,SecondOptionChoiceId=2,ThirdOptionChoiceId=1,ForthOptionChoiceId=3},
+                new Choice{StudentNumber="A00900413",FirstName="Sandy",LastName="Ching",TermId=201420,FirstOptionChoiceId=2,SecondOptionChoiceId=1,ThirdOptionChoiceId=4,ForthOptionChoiceId=3},
+                new Choice{StudentNumber="A01000013",FirstName="Joseph",LastName="Hou",TermId=201420,FirstOptionChoiceId=1,SecondOptionChoiceId=4,ThirdOptionChoiceId=2,ForthOptionChoiceId=3}
             };
             dummyChoices.ForEach(s => context.Choices.Add(s));
             context.SaveChanges();
