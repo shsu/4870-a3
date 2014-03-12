@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api", "api\api.csproj", "{4D238D9F-1D0E-4E60-BEFE-41CBA06C20A4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{83222FAA-F7C2-4850-ADBB-2044B093F6B5}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -12,16 +10,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{83222F
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend", "backend\backend.csproj", "{F5ED4892-7265-4C34-AF4D-1B5E163AA1AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4D238D9F-1D0E-4E60-BEFE-41CBA06C20A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D238D9F-1D0E-4E60-BEFE-41CBA06C20A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D238D9F-1D0E-4E60-BEFE-41CBA06C20A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D238D9F-1D0E-4E60-BEFE-41CBA06C20A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5ED4892-7265-4C34-AF4D-1B5E163AA1AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5ED4892-7265-4C34-AF4D-1B5E163AA1AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5ED4892-7265-4C34-AF4D-1B5E163AA1AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5ED4892-7265-4C34-AF4D-1B5E163AA1AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
