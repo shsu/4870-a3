@@ -25,18 +25,23 @@ namespace backend.Models.Entity
         public String LastName { get; set; }
 
         [Required]
+        [ForeignKey("Term")]
         public int TermId { get; set; }
 
         [Required]
+        [ForeignKey("FirstOptionChoice")]
         public int FirstOptionChoiceId { get; set; }
 
         [Required]
+        [ForeignKey("SecondOptionChoice")]
         public int SecondOptionChoiceId { get; set; }
 
         [Required]
+        [ForeignKey("ThirdOptionChoice")]
         public int ThirdOptionChoiceId { get; set; }
 
         [Required]
+        [ForeignKey("ForthOptionChoice")]
         public int ForthOptionChoiceId { get; set; }
 
 
@@ -44,23 +49,16 @@ namespace backend.Models.Entity
          * Navigational Properties
          * ==============================
          */
-        [ForeignKey("TermId")]
-        [InverseProperty("Id")]
+        
+       
         public virtual Term Term { get; set; }
-
-        [ForeignKey("FirstOptionChoiceId")]
-        [InverseProperty("Id")]
+        
         public virtual Option FirstOptionChoice { get; set; }
 
-        [ForeignKey("SecondOptionChoiceId")]
         public virtual Option SecondOptionChoice { get; set; }
 
-        [ForeignKey("ThirdOptionChoiceId")]
-        [InverseProperty("Id")]
         public virtual Option ThirdOptionChoice { get; set; }
 
-        [ForeignKey("ForthOptionChoiceId")]
-        [InverseProperty("Id")]
         public virtual Option ForthOptionChoice { get; set; }
 
     }

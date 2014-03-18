@@ -18,6 +18,8 @@ namespace backend.Models
 
         public Boolean IsActive { get; set; }
 
-        public virtual ICollection<Choice> Choices { get; set; }
+
+        //[InverseProperty("Term")]
+        //public virtual ICollection<Choice> Choices { get; set; }
     }
 }
