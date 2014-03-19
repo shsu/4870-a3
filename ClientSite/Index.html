@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <h3>Client SIte</h3>
+    <button id="btnGetTerms">Get Terms</button>
+    <button id="btnGetOptions">Get Options</button>
+    <pre id="preOutput"></pre>
+    <script src="Scripts/jquery-2.1.0.js"></script>
+    <script>
+        $(function () {
+            var getOptions = function () {
+                $.get(optionUrl).always(showResponse);
+                return false;
+            };
+
+            var getTerms = function () {
+                $.get(termUrl).always(showResponse);
+                return false;
+            };
+
+           
+
+            var showResponse = function (object) {
+                $("#preOutput").text(JSON.stringify(object, null,4));
+            };
+
+            var url = "http://localhost:1066/api/";
+            var termUrl = url + "Term";
+            var optionUrl = url + "Option";
+
+
+            $("#btnGetTerms").click(getTerms);
+            $("#btnGetOptions").click(getOptions);
+        });
+    </script>
+</body>
+</html>
