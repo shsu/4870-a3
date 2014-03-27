@@ -194,11 +194,11 @@
     <Compile Include="Controllers\API\AccountController.cs" />
     <Compile Include="Controllers\API\ChoiceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MVC\ChoiceMVCController.cs" />
-    <Compile Include="Controllers\MVC\OptionMVCController.cs" />
-    <Compile Include="Controllers\MVC\TermMVCController.cs" />
     <Compile Include="Controllers\API\OptionController.cs" />
     <Compile Include="Controllers\API\TermController.cs" />
+    <Compile Include="Controllers\MVC\ChoiceAdminController.cs" />
+    <Compile Include="Controllers\MVC\OptionAdminController.cs" />
+    <Compile Include="Controllers\MVC\TermAdminController.cs" />
     <Compile Include="DAL\OptionSelectionContext.cs" />
     <Compile Include="DAL\OptionSelectionInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -275,6 +275,21 @@
     <Content Include="Views\ChoiceMVC\Details.cshtml" />
     <Content Include="Views\ChoiceMVC\Edit.cshtml" />
     <Content Include="Views\ChoiceMVC\Index.cshtml" />
+    <Content Include="Views\ChoiceAdmin\Create.cshtml" />
+    <Content Include="Views\ChoiceAdmin\Delete.cshtml" />
+    <Content Include="Views\ChoiceAdmin\Details.cshtml" />
+    <Content Include="Views\ChoiceAdmin\Edit.cshtml" />
+    <Content Include="Views\ChoiceAdmin\Index.cshtml" />
+    <Content Include="Views\TermAdmin\Create.cshtml" />
+    <Content Include="Views\TermAdmin\Delete.cshtml" />
+    <Content Include="Views\TermAdmin\Details.cshtml" />
+    <Content Include="Views\TermAdmin\Edit.cshtml" />
+    <Content Include="Views\TermAdmin\Index.cshtml" />
+    <Content Include="Views\OptionAdmin\Create.cshtml" />
+    <Content Include="Views\OptionAdmin\Delete.cshtml" />
+    <Content Include="Views\OptionAdmin\Details.cshtml" />
+    <Content Include="Views\OptionAdmin\Edit.cshtml" />
+    <Content Include="Views\OptionAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
