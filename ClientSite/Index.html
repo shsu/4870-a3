@@ -2,12 +2,52 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <script src="Scripts/jquery-2.1.0.js"></script>
+    <script src="Scripts/jquery-2.1.0.intellisense.js"></script>
+    <link rel="stylesheet" href="/Styles/client_style.css" media="screen">
 </head>
 <body>
-    <h3>Client SIte</h3>
-    <button id="btnGetTerms">Get Terms</button>
-    <button id="btnGetOptions">Get Options</button>
+    <header id="t_header_general" role="banner" class="noprint">
+        <div class="section">
+            <h1 id="logo" class="t_compartment"><a href="/" class="nav_bcit"><abbr title="British Columbia Institute of Technology">BCIT</abbr></a></h1>
+            <nav id="nav_core" class="t_compartment" role="navigation">
+                <h2 class="ally">Site Navigation</h2><ul id="nav_core_loaded">
+                    <li id="options" class="navcore_tab" tabindex="0">
+                        <h3><span>Options</span></h3>
+                        <a href="/study/" class="navcore_overview">Overview</a>                        
+                    </li>
+
+                    <li id="terms" class="navcore_tab" tabindex="0">
+                        <h3><span>Terms</span></h3>
+                        <a href="/study/" class="navcore_overview">Overview</a>
+                    </li>
+                    <li id="choice" class="navcore_tab" tabindex="0">
+                        <h3><span>Choice</span></h3>
+                        <a href="/study/" class="navcore_overview">Overview</a>
+                    </li>
+                    
+                </ul>
+            </nav>
+            
+        </div>
+    </header>
+    -->
     <pre id="preOutput"></pre>
+
+    <table id="tblChoice">
+        <tr>
+            <td>Student Number</td>
+            <td><input  /></td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td><input /></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input /></td>
+        </tr>
+    </table>
     <script src="Scripts/jquery-2.1.0.js"></script>
     <script>
         $(function () {
@@ -21,7 +61,14 @@
                 return false;
             };
 
-           
+            var getChoices = function () {
+                clearResult();
+            };
+
+
+            var clearResult = function () {
+                $("#preOutput").text("");
+            }
 
             var showResponse = function (object) {
                 $("#preOutput").text(JSON.stringify(object, null,4));
@@ -32,8 +79,9 @@
             var optionUrl = url + "Option";
 
 
-            $("#btnGetTerms").click(getTerms);
-            $("#btnGetOptions").click(getOptions);
+            $("#terms").click(getTerms);
+            $("#options").click(getOptions);
+            $("#choice").click(getChoices);
         });
     </script>
 </body>
