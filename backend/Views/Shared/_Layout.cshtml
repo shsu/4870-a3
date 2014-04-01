@@ -8,11 +8,21 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/jquery-2.1.0.js")
+
+    <style type="text/css">
+
+        @@media(min-width:768px){
+        #navlinks{
+            padding-left:250px;
+        }
+        
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <h1 id="logo" class="t_compartment"><a href="/" style="margin-left:10%;" class="nav_bcit hidden-xs"><abbr title="British Columbia Institute of Technology">BCIT</abbr></a></h1>
-        <div class="container" style="padding-left:250px;">
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -21,7 +31,7 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" id="navlinks">
                     <li id="choice" class="navcore_tab">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
                     <li id="choice" class="navcore_tab">@Html.ActionLink("Choices", "Index", "ChoiceAdmin", new { area = "" }, null)</li>
                     <li id="choice" class="navcore_tab">@Html.ActionLink("Options", "Index", "OptionAdmin", new { area = "" }, null)</li>
