@@ -1,4 +1,4 @@
-﻿<div class="jumbotron">
+﻿@*<div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
     <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
@@ -21,4 +21,176 @@
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
     </div>
-</div>
+</div>*@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    
+</head>
+<body>
+
+    <header id="t_header_general" role="banner" class="noprint">
+        <div class="section">
+            <h1 id="logo" class="t_compartment"><a href="/" class="nav_bcit"><abbr title="British Columbia Institute of Technology">BCIT</abbr></a></h1>
+            <nav id="nav_core" class="t_compartment" role="navigation">
+                <h2 class="ally">Site Navigation</h2><ul id="nav_core_loaded">
+                    <li id="options" class="navcore_tab" tabindex="0">
+                        <h3><span></span></h3>
+                        <a href="/Admin/Index.chtml" class="navcore_overview">Overview</a>
+                    </li>
+
+                    <li id="terms" class="navcore_tab" tabindex="0">
+                        <h3><span></span></h3>
+                        <a href="/study/" class="navcore_overview">Overview</a>
+                    </li>
+                    <li id="choice" class="navcore_tab" tabindex="0">
+                        <h3><span></span></h3>
+                        <a href="/study/" class="navcore_overview">Overview</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+    <pre id="preOutput"></pre>
+
+    <table id="tblChoice">
+        <tr>
+            <td>Student Number</td>
+            <td><input id="txtStudentNumber" /></td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td><input id="txtFirstName" /></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input id="txtLastName" /></td>
+        </tr>
+        <tr>
+            <td>Term</td>
+            <td id="txtTermId"></td>
+        </tr>
+        <tr>
+            <td>First Choice</td>
+            <td><select id="selFirstChoice"></select></td>
+        </tr>
+        <tr>
+            <td>Second Choice</td>
+            <td><select id="selSecondChoice"></select></td>
+        </tr>
+        <tr>
+            <td>Third Choice</td>
+            <td><select id="selThirdChoice"></select></td>
+        </tr>
+        <tr>
+            <td>Fourth Choice</td>
+            <td><select id="selFourthChoice"></select></td>
+        </tr>
+    </table>
+    <button id="btnSubmit">Submit</button>
+    <button>Cancel</button>
+    <script src="Scripts/jquery-2.1.0.js"></script>
+    <script>
+
+        //        $(function () {
+
+
+        //var getOptions = function () {
+        //    $.get(optionUrl).always(showResponse);
+        //    return false;
+        //};
+
+        //var getTerms = function () {
+        //    $.get(termUrl).always(showResponse);
+        //    return false;
+        //};
+
+        function getChoices() {
+            clearResult();
+            $.get(optionUrl).always(showOptions);
+            $.get(termUrl).always(showTerm);
+        };
+
+
+        var clearResult = function () {
+            $("#preOutput").text("");
+        }
+
+        //var showResponse = function (object) {
+        //    $("#preOutput").text(JSON.stringify(object, null,4));
+        //};
+
+        var url = "http://" + document.location.host + "/api/";
+        var termUrl = url + "Term";
+        var optionUrl = url + "Option";
+        var choiceUrl = url + "Choice";
+
+        var allOptions;
+        var currentTerm;
+
+        var showOptions = function (object) {
+            allOptions = object;
+            $.each(object, function (i, option) {
+                $('#selFirstChoice').append($('<option/>').attr("value", option.Id).text(option.Title));
+            });
+
+            $.each(object, function (i, option) {
+                $('#selSecondChoice').append($('<option/>').attr("value", option.Id).text(option.Title));
+            });
+
+            $.each(object, function (i, option) {
+                $('#selThirdChoice').append($('<option/>').attr("value", option.Id).text(option.Title));
+            });
+
+            $.each(object, function (i, option) {
+                $('#selFourthChoice').append($('<option/>').attr("value", option.Id).text(option.Title));
+            });
+        };
+
+        var showTerm = function (object) {
+            currentTerm = object;
+            $("#txtTermId").text(object.Id);
+
+        }
+
+
+        $("#btnSubmit").click(Save);
+        window.onload = getChoices;
+        //}
+        //);
+        function Save() {
+            jQuery.support.cors = true;
+            getChoiceIDs;
+            var choice = {
+                StudentNumber: $('#txtStudentNumber').val(),
+                FirstName: $('#txtFirstName').val(),
+                LastName: $('#txtLastName').val(),
+                TermId: currentTerm.Id,
+                FirstOptionChoiceId: $('#selFirstChoice').find(':selected').val(),
+                SecondOptionChoiceId: $('#selSecondChoice').find(':selected').val(),
+                ThirdOptionChoiceId: $('#selThirdChoice').find(':selected').val(),
+                ForthOptionChoiceId: $('#selFourthChoice').find(':selected').val()
+            };
+
+            $.ajax({
+                url: choiceUrl,
+                type: 'POST',
+                data: JSON.stringify(choice),
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    ShowChoice(data);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

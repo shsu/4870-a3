@@ -47,12 +47,34 @@
             <td>Last Name</td>
             <td><input /></td>
         </tr>
+        <tr>
+            <td>First Choice</td>
+            <td><select id="selFirstChoice"></select></td>
+        </tr>
+        <tr>
+            <td>Second Choice</td>
+            <td><select id="selSecondChoice"></select></td>
+        </tr>
+        <tr>
+            <td>Third Choice</td>
+            <td><select id="selThirdChoice"></select></td>
+        </tr>
+        <tr>
+            <td>Fourth Choice</td>
+            <td><select id="selFourthChoice"></select></td>
+        </tr>
     </table>
+    <button >Submit</button>
+    <button>Cancel</button>
     <script src="Scripts/jquery-2.1.0.js"></script>
     <script>
-        $(function () {
+        
+//        $(function () {
+
+            
             var getOptions = function () {
                 $.get(optionUrl).always(showResponse);
+                //$.get(optionUrl).always(showOptions);
                 return false;
             };
 
@@ -61,8 +83,9 @@
                 return false;
             };
 
-            var getChoices = function () {
+            function getChoices() {
                 clearResult();
+                $.get(optionUrl).always(showOptions);
             };
 
 
@@ -79,10 +102,32 @@
             var optionUrl = url + "Option";
 
 
+            var showOptions = function (object) {
+                $.each(object, function (i, option) {
+                    $('#selFirstChoice').append($('<option/>').attr("value", option.id).text(option.Title));
+                });
+
+                $.each(object, function (i, option) {
+                    $('#selSecondChoice').append($('<option/>').attr("value", option.id).text(option.Title));
+                });
+
+                $.each(object, function (i, option) {
+                    $('#selThirdChoice').append($('<option/>').attr("value", option.id).text(option.Title));
+                });
+
+                $.each(object, function (i, option) {
+                    $('#selFourthChoice').append($('<option/>').attr("value", option.id).text(option.Title));
+                });
+            };
+
+
+            
             $("#terms").click(getTerms);
             $("#options").click(getOptions);
-            $("#choice").click(getChoices);
-        });
+            $("#choice").click(clearResult);
+            window.onload = getChoices;
+        //}
+        //);
     </script>
 </body>
 </html>

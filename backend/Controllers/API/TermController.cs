@@ -18,9 +18,9 @@ namespace backend.Controllers
         private OptionSelectionContext db = new OptionSelectionContext();
 
         // GET api/Term
-        public IQueryable<Term> GetTerms()
+        public Term GetTerms()
         {
-            return db.Terms;
+            return db.Terms.SingleOrDefault(t=>t.IsActive.Equals(true));
         }
 
         // GET api/Term/5
