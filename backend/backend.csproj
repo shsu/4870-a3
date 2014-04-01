@@ -261,7 +261,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
-    <Content Include="Styles\client_style.css" />
+    <Content Include="Content\client_style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
