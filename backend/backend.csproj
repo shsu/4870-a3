@@ -226,7 +226,6 @@
     <Content Include="images\header_sprite.gif" />
     <Content Include="images\navsite_home_bcit.gif" />
     <Content Include="images\progcat_logo.gif" />
-    <Content Include="Index.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
