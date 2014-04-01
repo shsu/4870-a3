@@ -135,19 +135,25 @@
         
 
         function validate() {
+            var returnValue = true;
             if ($('#txtStudentNumber').val() == '' ||
                 $('#txtFirstName').val() == '' ||
                 $('#txtLastName').val() == '' ||
-                $('#selFirstChoice').find(':selected').val() == null ||
-                $('#selSecondChoice').find(':selected').val() == null ||
-                $('#selThirdChoice').find(':selected').val() == null ||
-                $('#selFourthChoice').find(':selected').val() == null)
+                $('#selFirstChoice').find(':selected').val() == 'Select Choice #1' ||
+                $('#selSecondChoice').find(':selected').val() == 'Select Choice #2' ||
+                $('#selThirdChoice').find(':selected').val() == 'Select Choice #3' ||
+                $('#selFourthChoice').find(':selected').val() == 'Select Choice #4')
             {
                 toastr.error('All fields are required.');
-                return false;
+                returnValue = false;
+            }
+            var pattern = new RegExp("^A\\d{8}$");
+            if (!pattern.test($('#txtStudentNumber').val())) {
+                toastr.error('Invalid Student Number.');
+                returnValue = false;
             }
 
-            return true;
+            return returnValue;
         }
 
     </script>
