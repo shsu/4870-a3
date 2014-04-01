@@ -29,10 +29,13 @@
 <head>
     <title></title>
     
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <link href="~/Content/toastr.css" rel="stylesheet" />
 </head>
 <body>
 
-    @*<header id="t_header_general" role="banner" class="noprint">
+    <header id="t_header_general" role="banner" class="noprint">
         <div class="section">
             <h1 id="logo" class="t_compartment"><a href="/" class="nav_bcit"><abbr title="British Columbia Institute of Technology">BCIT</abbr></a></h1>
             <nav id="nav_core" class="t_compartment" role="navigation">
@@ -55,47 +58,56 @@
             </nav>
 
         </div>
-    </header>*@
+    </header>
+    <pre id="preOutput"></pre>
+    <form id="myForm" action="#">
 
-    <table id="tblChoice">
-        <tr>
-            <td>Student Number</td>
-            <td><input id="txtStudentNumber" /></td>
-        </tr>
-        <tr>
-            <td>First Name</td>
-            <td><input id="txtFirstName" /></td>
-        </tr>
-        <tr>
-            <td>Last Name</td>
-            <td><input id="txtLastName" /></td>
-        </tr>
-        <tr>
-            <td>Term</td>
-            <td id="txtTermId"></td>
-        </tr>
-        <tr>
-            <td>First Choice</td>
-            <td><select id="selFirstChoice"></select></td>
-        </tr>
-        <tr>
-            <td>Second Choice</td>
-            <td><select id="selSecondChoice"></select></td>
-        </tr>
-        <tr>
-            <td>Third Choice</td>
-            <td><select id="selThirdChoice"></select></td>
-        </tr>
-        <tr>
-            <td>Fourth Choice</td>
-            <td><select id="selFourthChoice"></select></td>
-        </tr>
-    </table>
-    <button id="btnSubmit">Submit</button>
-    <button>Cancel</button>
-    <script src="Scripts/jquery-2.1.0.js"></script>
+
+        <table id="tblChoice">
+            <tr>
+                <td>Student Number</td>
+                <td><input id="txtStudentNumber" /></td>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td><input id="txtFirstName" /></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input id="txtLastName" /></td>
+            </tr>
+            <tr>
+                <td>Term</td>
+                <td id="txtTermId"></td>
+            </tr>
+            <tr>
+                <td>First Choice</td>
+                <td><select id="selFirstChoice"></select></td>
+            </tr>
+            <tr>
+                <td>Second Choice</td>
+                <td><select id="selSecondChoice"></select></td>
+            </tr>
+            <tr>
+                <td>Third Choice</td>
+                <td><select id="selThirdChoice"></select></td>
+            </tr>
+            <tr>
+                <td>Fourth Choice</td>
+                <td><select id="selFourthChoice"></select></td>
+            </tr>
+        </table>
+        <button id="btnSubmit">Submit</button>
+    </form>
     <script>
+        $(document).ready(function () {
+            $('#selFirstChoice').append($('<option/>').text("Select Choice #1"));
+            $('#selSecondChoice').append($('<option/>').text("Select Choice #2"));
+            $('#selThirdChoice').append($('<option/>').text("Select Choice #3"));
+            $('#selFourthChoice').append($('<option/>').text("Select Choice #4"));
 
+
+        });
         //        $(function () {
 
 
@@ -164,7 +176,6 @@
         //);
         function Save() {
             jQuery.support.cors = true;
-            getChoiceIDs;
             var choice = {
                 StudentNumber: $('#txtStudentNumber').val(),
                 FirstName: $('#txtFirstName').val(),
@@ -182,10 +193,11 @@
                 data: JSON.stringify(choice),
                 contentType: "application/json;charset=utf-8",
                 success: function (data) {
-                    ShowChoice(data);
+                    toastr.success('Your choices have been submitted.');
+                    $('#myForm').trigger("reset");
                 },
                 error: function (x, y, z) {
-                    alert(x + '\n' + y + '\n' + z);
+                    toastr.error('Something went wrong.','Please try again.');
                 }
             });
         }
