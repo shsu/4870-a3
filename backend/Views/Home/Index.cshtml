@@ -100,35 +100,56 @@
 
         }
 
-        $("#btnSubmit").click(Save);
         window.onload = getChoices;
-        function Save() {
-            jQuery.support.cors = true;
-            var choice = {
-                StudentNumber: $('#txtStudentNumber').val(),
-                FirstName: $('#txtFirstName').val(),
-                LastName: $('#txtLastName').val(),
-                TermId: currentTerm.Id,
-                FirstOptionChoiceId: $('#selFirstChoice').find(':selected').val(),
-                SecondOptionChoiceId: $('#selSecondChoice').find(':selected').val(),
-                ThirdOptionChoiceId: $('#selThirdChoice').find(':selected').val(),
-                ForthOptionChoiceId: $('#selFourthChoice').find(':selected').val()
-            };
+        $("#btnSubmit").click(Save);
 
-            $.ajax({
-                url: choiceUrl,
-                type: 'POST',
-                data: JSON.stringify(choice),
-                contentType: "application/json;charset=utf-8",
-                success: function (data) {
-                    toastr.success('Your choices have been submitted.');
-                    $('#myForm').trigger("reset");
-                },
-                error: function (x, y, z) {
-                    toastr.error('Something went wrong.', 'Please try again.');
-                }
-            });
+        
+        function Save() {
+            if (validate()) {
+                jQuery.support.cors = true;
+                var choice = {
+                    StudentNumber: $('#txtStudentNumber').val(),
+                    FirstName: $('#txtFirstName').val(),
+                    LastName: $('#txtLastName').val(),
+                    TermId: currentTerm.Id,
+                    FirstOptionChoiceId: $('#selFirstChoice').find(':selected').val(),
+                    SecondOptionChoiceId: $('#selSecondChoice').find(':selected').val(),
+                    ThirdOptionChoiceId: $('#selThirdChoice').find(':selected').val(),
+                    ForthOptionChoiceId: $('#selFourthChoice').find(':selected').val()
+                };
+
+                $.ajax({
+                    url: choiceUrl,
+                    type: 'POST',
+                    data: JSON.stringify(choice),
+                    contentType: "application/json;charset=utf-8",
+                    success: function (data) {
+                        toastr.success('Your choices have been submitted.');
+                        $('#myForm').trigger("reset");
+                    },
+                    error: function (x, y, z) {
+                        toastr.error('Something went wrong.', 'Please try again.');
+                    }
+                });
+            }}
+        
+
+        function validate() {
+            if ($('#txtStudentNumber').val() == '' ||
+                $('#txtFirstName').val() == '' ||
+                $('#txtLastName').val() == '' ||
+                $('#selFirstChoice').find(':selected').val() == null ||
+                $('#selSecondChoice').find(':selected').val() == null ||
+                $('#selThirdChoice').find(':selected').val() == null ||
+                $('#selFourthChoice').find(':selected').val() == null)
+            {
+                toastr.error('All fields are required.');
+                return false;
+            }
+
+            return true;
         }
+
     </script>
 </body>
 </html>
